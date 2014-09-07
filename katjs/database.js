@@ -16,6 +16,51 @@
 
 
 */
+
+function reset(arr) {
+	var val;
+	for(var key in arr){
+		val = arr[key];
+	}
+	this.php_js = this.php_js || {};
+	this.php_js.pointers = this.php_js.pointers || [];
+	var indexOf = function(value) {
+		for (var i = 0, length = this.length; i < length; i++) {
+			if (this[i] === value) {
+				return i;
+			}
+		}
+		return -1;
+	};
+	var pointers = this.php_js.pointers;
+	if (!pointers.indexOf) {
+		pointers.indexOf = indexOf;
+	}
+	if (pointers.indexOf(arr) === -1) {
+		pointers.push(arr, 0);
+	}
+	var arrpos = pointers.indexOf(arr);
+	if (Object.prototype.toString.call(arr) !== '[object Array]') {
+		for (var k in arr) {
+			if (pointers.indexOf(arr) === -1) {
+				pointers.push(arr, 0);
+			} else {
+				pointers[arrpos + 1] = 0;
+			}
+			return arr[k];
+		}
+		return false;
+	}
+
+	if (arr.length === 0) {
+		return false;
+	}
+	pointers[arrpos + 1] = 0;
+	return arr[pointers[arrpos + 1]];
+}
+
+
+
 var mysql = require('mysql')
 var queries = 0;
 var connection;
@@ -78,49 +123,6 @@ function QueryInternal(str,array, callback){
 		}
 	});
 }
-
-function reset(arr) {
-	var val;
-	for(var key in arr){
-		val = arr[key];
-	}
-	this.php_js = this.php_js || {};
-	this.php_js.pointers = this.php_js.pointers || [];
-	var indexOf = function(value) {
-		for (var i = 0, length = this.length; i < length; i++) {
-			if (this[i] === value) {
-				return i;
-			}
-		}
-		return -1;
-	};
-	var pointers = this.php_js.pointers;
-	if (!pointers.indexOf) {
-		pointers.indexOf = indexOf;
-	}
-	if (pointers.indexOf(arr) === -1) {
-		pointers.push(arr, 0);
-	}
-	var arrpos = pointers.indexOf(arr);
-	if (Object.prototype.toString.call(arr) !== '[object Array]') {
-		for (var k in arr) {
-			if (pointers.indexOf(arr) === -1) {
-				pointers.push(arr, 0);
-			} else {
-				pointers[arrpos + 1] = 0;
-			}
-			return arr[k];
-		}
-		return false;
-	}
-
-	if (arr.length === 0) {
-		return false;
-	}
-	pointers[arrpos + 1] = 0;
-	return arr[pointers[arrpos + 1]];
-}
-
 
 
 exports.Query = function(str,array,callback){
