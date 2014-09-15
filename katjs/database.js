@@ -60,8 +60,13 @@ function reset(arr) {
 }
 
 
-
-var mysql = require('mysql')
+try{
+	var mysql = require('mysql');
+} catch(e){
+	console.error("MySQL could not be included.");
+	console.error(e.message);
+	console.error(e.code)
+}
 var queries = 0;
 var connection;
 exports.Connect = function(ip,username,password,database){
