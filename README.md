@@ -7,7 +7,7 @@ A lightweight NodeJS Library.
 Usage
 =====
 
-Put it in your node_modules folder and add initialize it in your project.
+Put the katjs folder in your node_modules folder and add initialize it in your project.
 
 ```js
 var KAT = require('katjs');
