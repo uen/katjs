@@ -1,4 +1,4 @@
 exports.Initialize = function(socket){
-  socket.IP = socket.request.connection.remoteAddress  
+  socket.IP() = socket.request.connection.remoteAddress  
   return socket;
 }
