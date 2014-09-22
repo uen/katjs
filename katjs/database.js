@@ -1,22 +1,24 @@
 /*
-	Database
-	.Connect(host, username, password, database)
+	Cheats:
+	
+	.Connect(host, username, password, database) // Connects to a Database. Self explanatory. 
 
 	Query a single value:
-	.QueryValue("SELECT count(*) FROM users");
+	.QueryValue("SELECT count(*) FROM users") // Returns a single value
 	
 	Query a single row:
-	.QueryRow("SELECT id,name,shoesize FROM users WHERE id = ?", ['1']);
+	.QueryRow("SELECT id,name,shoesize FROM users WHERE id = ?", ['1']); // Returns a single row.
 
 	Query a table:
-	.Query("SELECT id,name,shoesize FROM users WHERE id = ?", ['1']);
+	.Query("SELECT id,name,shoesize FROM users WHERE id = ?", ['1']); // Returns multiple rows.
 
 	Inserting:
-	.Insert('users', [{'name'=>'manolis','shoesize'=>11}, {'name'=>'James', 'shoesize'=>4}]);
+	.Insert('users', [{'name'=>'manolis','shoesize'=>11}, {'name'=>'James', 'shoesize'=>4}]); // Self explanatory.
 
 
 */
 
+//Todo: Write a new, good reset function
 function reset(arr) {
 	var val;
 	for(var key in arr){
