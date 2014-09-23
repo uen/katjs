@@ -17,9 +17,6 @@
 
 
 */
-
-[Object.keys(obj)[0]]
-
 function reset(arr) {
 	return (arr[Object.keys(arr)[0]]) ? (arr[Object.keys(arr)[0]])) : NULL;
 }
