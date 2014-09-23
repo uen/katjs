@@ -18,47 +18,10 @@
 
 */
 
-//Todo: Write a new, good reset function
-function reset(arr) {
-	var val;
-	for(var key in arr){
-		val = arr[key];
-	}
-	this.php_js = this.php_js || {};
-	this.php_js.pointers = this.php_js.pointers || [];
-	var indexOf = function(value) {
-		for (var i = 0, length = this.length; i < length; i++) {
-			if (this[i] === value) {
-				return i;
-			}
-		}
-		return -1;
-	};
-	var pointers = this.php_js.pointers;
-	if (!pointers.indexOf) {
-		pointers.indexOf = indexOf;
-	}
-	if (pointers.indexOf(arr) === -1) {
-		pointers.push(arr, 0);
-	}
-	var arrpos = pointers.indexOf(arr);
-	if (Object.prototype.toString.call(arr) !== '[object Array]') {
-		for (var k in arr) {
-			if (pointers.indexOf(arr) === -1) {
-				pointers.push(arr, 0);
-			} else {
-				pointers[arrpos + 1] = 0;
-			}
-			return arr[k];
-		}
-		return false;
-	}
+[Object.keys(obj)[0]]
 
-	if (arr.length === 0) {
-		return false;
-	}
-	pointers[arrpos + 1] = 0;
-	return arr[pointers[arrpos + 1]];
+function reset(arr) {
+	return (arr[Object.keys(arr)[0]]) ? (arr[Object.keys(arr)[0]])) : NULL;
 }
 
 
