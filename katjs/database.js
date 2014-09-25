@@ -14,11 +14,9 @@
 
 	Inserting:
 	.Insert('users', [{'name'=>'manolis','shoesize'=>11}, {'name'=>'James', 'shoesize'=>4}]); // Self explanatory.
-
-
 */
 function reset(arr) {
-	return (arr[Object.keys(arr)[0]]) ? (arr[Object.keys(arr)[0]])) : NULL;
+	return (arr[Object.keys(arr)[0]]) ? (arr[Object.keys(arr)[0]])) : NULL; 
 }
 
 
@@ -32,6 +30,7 @@ try{
 var queries = 0;
 var connection;
 exports.Connect = function(ip,username,password,database){
+	// ^ Set defaults
 	connection = mysql.createConnection({
 		host:ip,
 		user:username,
