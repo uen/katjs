@@ -15,6 +15,7 @@
 	Inserting:
 	.Insert('users', [{'name'=>'manolis','shoesize'=>11}, {'name'=>'James', 'shoesize'=>4}]); // Self explanatory.
 */
+
 function reset(arr) {
 	return (arr[Object.keys(arr)[0]]) ? (arr[Object.keys(arr)[0]])) : NULL; 
 }
@@ -27,6 +28,7 @@ try{
 	console.error(e.message);
 	console.error(e.code)
 }
+
 var queries = 0;
 var connection;
 exports.Connect = function(ip,username,password,database){
