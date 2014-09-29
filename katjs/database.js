@@ -42,7 +42,7 @@ exports.Connect = function(ip,username,password,database){
 
 	connection.connect(function(error){
 		if(error){
-			console.error('Error connecting to IP '+ip+'. Error: '+error.stack);
+			console.error('DB:: Error connecting to IP '+ip+'. Error: '+error.stack);
 			return;
 		}
 
@@ -69,14 +69,13 @@ exports.Connect = function(ip,username,password,database){
 			}
 		});
 
-		console.log('Connected to MySQL Database');
+		console.log('DB:: Connected');
 	});
 
 
 }
 
 function QueryInternal(str,array, callback){
-	console.log('Starting query: '+str);
 	queries++;
 	var curTime = (new Date).getTime();
 
