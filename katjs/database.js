@@ -32,7 +32,9 @@ try{
 var queries = 0;
 var connection;
 exports.Connect = function(ip,username,password,database){
-	// ^ Set defaults
+	if(!(ip)&&(username)&&(password)&&(database)){
+		return false;
+	}
 	connection = mysql.createConnection({
 		host:ip,
 		user:username,
