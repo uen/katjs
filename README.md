@@ -31,6 +31,12 @@ KAT.DB.QueryRow("SELECT id,name FROM users WHERE id = ?", [1]);
 KAT.DB.Query("SELECT id FROM users WHERE name = ?, shoesize = ?",['Manolis', 11]);
 
 
+//Create a reporter to report errors
+KAT.SetConfig('reporter', function(error){
+  // Do Something
+});
+
+
 
 
 ```
