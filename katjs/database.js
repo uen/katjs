@@ -105,7 +105,7 @@ exports.Query = function(str,array,callback){
 exports.QueryRow = function(str,array,callback){
 	QueryInternal(str,array,function(data){
 		if(callback){
-			callback(exports.Reset(data))
+			callback(this.Reset(data))
 		}
 	})
 }
@@ -113,7 +113,7 @@ exports.QueryRow = function(str,array,callback){
 exports.QueryValue = function(str,array,callback){
 	exports.QueryRow(str,array,function(data){
 		if(callback){
-			callback(exports.Reset(data))
+			callback(this.Reset(data))
 		}
 	})
 }
