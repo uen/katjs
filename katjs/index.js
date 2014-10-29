@@ -1,5 +1,6 @@
 exports.cfg = {
-  reporter:null
+  reporter:null,
+  mailer:null
 }
 
 exports.SetConfig = function(k,v){
