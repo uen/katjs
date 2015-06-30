@@ -16,8 +16,8 @@
 	.Insert('users', [{'name'=>'manolis','shoesize'=>11}, {'name'=>'James', 'shoesize'=>4}]); // Self explanatory.
 */
 
-function exports.Reset(arr) {
-	return (arr[Object.keys(arr)[0]]) ? (arr[Object.keys(arr)[0]])) : NULL; 
+function reset(arr) {
+	return (arr[Object.keys(arr)[0]]) ? (arr[Object.keys(arr)[0]]) : NULL; 
 }
 
 
@@ -105,7 +105,7 @@ exports.Query = function(str,array,callback){
 exports.QueryRow = function(str,array,callback){
 	QueryInternal(str,array,function(data){
 		if(callback){
-			callback(this.Reset(data))
+			callback(reset(data))
 		}
 	})
 }
@@ -113,7 +113,7 @@ exports.QueryRow = function(str,array,callback){
 exports.QueryValue = function(str,array,callback){
 	exports.QueryRow(str,array,function(data){
 		if(callback){
-			callback(this.Reset(data))
+			callback(reset(data))
 		}
 	})
 }
