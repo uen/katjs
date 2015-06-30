@@ -31,7 +31,7 @@ try{
 
 var queries = 0;
 var connection;
-exports.Connect = function(ip,username,password,database){
+exports.Connect = function(ip,username,password,database, callback){
 	if(!(ip)&&(username)&&(password)&&(database)){
 		return false;
 	}
@@ -71,8 +71,8 @@ exports.Connect = function(ip,username,password,database){
 			}
 		});
 
-		console.log('DB:: Connected');
-	});
+		if(callback) callback();
+	}); 
 
 
 }
