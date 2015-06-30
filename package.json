@@ -1,0 +1,19 @@
+
+{
+  "name":"katjs",
+  "author":{
+    "name": "Manolis Vrondakis",
+    "url": "http://manolisvrondakis.com"
+  },
+  "version":"1.0.0",
+  "keywords": [
+    "mysql"
+  ],
+  "repository":{
+    "type":"git",
+    "url":"git://github.com/vrondakis/katjs",
+  },
+  "dependencies":{
+    "mysql": "2.8.0"
+  }
+}
