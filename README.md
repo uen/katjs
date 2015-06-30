@@ -21,13 +21,19 @@ var KAT = require('katjs');
 KAT.DB.Connect('host','username','password','database');
 
 // Query a single value
-KAT.DB.QueryValue("SELECT count(*) FROM users");
+KAT.DB.QueryValue("SELECT count(*) FROM users", function(data){
+  // Callback here
+});
 
 // Query a single row
-KAT.DB.QueryRow("SELECT id,name FROM users WHERE id = ?", [1]);
+KAT.DB.QueryRow("SELECT id,name FROM users WHERE id = ?", [1], function(data){
+  // Callback here
+});
 
 //Query a whole table
-KAT.DB.Query("SELECT id FROM users WHERE name = ?, shoesize = ?",['Manolis', 11]);
+KAT.DB.Query("SELECT id FROM users WHERE name = ?, shoesize = ?",['Manolis', 11], function(data){
+  // Callback here
+});
 
 
 //Create a reporter to report errors
