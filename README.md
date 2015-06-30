@@ -11,7 +11,6 @@ Put the katjs folder in your node_modules folder and initialize it in your proje
 
 ```js
 var KAT = require('katjs');
-KAT.Init();
 ```
 
 A typical set-up might look something like this
