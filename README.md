@@ -1,13 +1,13 @@
 KatJS
 =====
 
-A lightweight NodeJS Library. 
+A lightweight NodeJS MySQL wrapper 
 
 
 Usage
 =====
 
-Put the katjs folder in your node_modules folder and initialize it in your project.
+Put the katjs folder in your node_modules folder
 
 ```js
 var KAT = require('katjs');
@@ -18,25 +18,19 @@ A typical set-up might look something like this
 ```
 var KAT = require('katjs');
 
-KAT.DB.Connect('host','username','password','database');
+KAT.Connect('host','username','password','database');
 
 // Query a single value
-KAT.DB.QueryValue("SELECT count(*) FROM users", function(data){
+KAT.QueryValue("SELECT count(*) FROM users", function(data){
   // Callback here
 });
 
 // Query a single row
-KAT.DB.QueryRow("SELECT id,name FROM users WHERE id = ?", [1], function(data){
+KAT.QueryRow("SELECT id,name FROM users WHERE id = ?", [1], function(data){
   // Callback here
 });
 
 //Query a whole table
-KAT.DB.Query("SELECT id FROM users WHERE name = ?, shoesize = ?",['Manolis', 11], function(data){
+KAT.Query("SELECT id FROM users WHERE name = ?, shoesize = ?",['Manolis', 11], function(data){
   // Callback here
-});
-
-
-//Create a reporter to report errors
-KAT.SetConfig('reporter', function(error){
-  // Do Something (mail)
 });
