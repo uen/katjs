@@ -28,11 +28,11 @@ KAT.QueryValue("SELECT count(*) FROM users", function(data){
 });
 
 // Query a single row
-KAT.QueryRow("SELECT id,name FROM users WHERE id = ?", [1], function(data){
+KAT.QueryRow("SELECT id,name FROM users WHERE id = :id", {id:1}, function(data){
   // Callback here
 });
 
 //Query a whole table
-KAT.Query("SELECT id FROM users WHERE name = ?, shoesize = ?",['Manolis', 11], function(data){
+KAT.Query("SELECT id FROM users WHERE name = :name, shoesize = :size",{name:'Manolis',size:11}, function(data){
   // Callback here
 });
