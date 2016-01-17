@@ -18,7 +18,9 @@ A typical set-up might look something like this
 ```
 var KAT = require('katjs');
 
-KAT.Connect('host','username','password','database');
+KAT.Connect('host','username','password','database', function(){
+    console.log('Successfully connected to database');
+});
 
 // Query a single value
 KAT.QueryValue("SELECT count(*) FROM users", function(data){
