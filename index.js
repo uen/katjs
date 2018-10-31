@@ -4,13 +4,13 @@
 	.Connect(host, username, password, database, callback) // Connects to a Database 
 
 	Query a single value:
-	.QueryValue("SELECT count(*) FROM users") // Returns a single value
+	.queryValue("SELECT count(*) FROM users") // Returns a single value
 	
 	Query a single row:
-	.QueryRow("SELECT id,name,shoesize FROM users WHERE id = :id", {id:1}); // Returns a single row.
+	.queryRow("SELECT id,name,shoesize FROM users WHERE id = :id", {id:1}); // Returns a single row.
 
 	Query a table:
-	.Query("SELECT id,name,shoesize FROM users WHERE id = :id", {id:1}); // Returns multiple rows.
+	.query("SELECT id,name,shoesize FROM users WHERE id = :id", {id:1}); // Returns multiple rows.
 
 	Inserting:
 	.Insert('users', [{'name'=>'manolis','shoesize'=>11}, {'name'=>'James', 'shoesize'=>4}]); // Self explanatory.
@@ -18,7 +18,7 @@
 
 function reset(arr) {
 	if(!arr) return null;
-	return (arr[Object.keys(arr)[0]]) ? (arr[Object.keys(arr)[0]]) : null;; 
+	return (arr[Object.keys(arr)[0]]) ? (arr[Object.keys(arr)[0]]) : null;
 }
 
 
@@ -154,7 +154,7 @@ exports.queryRow = function(str,array,callback,failure){
 
 exports.queryValue = function(str,array){
 	return new Promise((resolve, reject) => {
-		exports.QueryRow(str, array).then((data) => {return resolve(reset(data))});
+		exports.queryRow(str, array).then((data) => {return resolve(reset(data))});
 	})
 }
 
@@ -171,7 +171,7 @@ exports.insert = function(table,array,callback, failure, insert){
 	var str = insert+" INTO "+table+" ("+keys.join(',')+") VALUES ("+values.join(',')+")";
 
 	return new Promise( (resolve, reject ) => {
-		exports.Query(str, array).then(data => {
+		exports.query(str, array).then(data => {
 			return resolve(data.insertId)
 		})
 	});
@@ -180,7 +180,7 @@ exports.insert = function(table,array,callback, failure, insert){
 
 exports.replace = function(table,array, callback){
 	return new Promise((resolve, reject)=>{
-		exports.Insert(table,array,"REPLACE").then((data)=>
+		exports.insert(table,array,"REPLACE").then((data)=>
 			resolve(data));	
 	})
 }
