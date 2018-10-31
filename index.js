@@ -135,7 +135,7 @@ exports.query = function(str, array){
 	// console.log('[DEBUG KatJS::] New Query: ' + str)
 
 	return new Promise( (resolve, reject) => {
-		QueryInternal(str,array, (data) => {
+		queryInternal(str,array, (data) => {
 			return resolve(data);
 		}, (err) => {
 			return reject(err);
@@ -146,7 +146,7 @@ exports.query = function(str, array){
 
 exports.queryRow = function(str,array,callback,failure){
 	return new Promise((resolve, reject) => {
-		QueryInternal(str, array, data => {
+		queryInternal(str, array, data => {
 			return resolve(reset(data))
 		});
 	})
