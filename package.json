@@ -1,18 +1,18 @@
 {
-  "name":"katjs",
-  "author":{
+  "name": "katjs",
+  "author": {
     "name": "Manolis Vrondakis",
     "url": "http://manolisvrondakis.com"
   },
-  "version":"1.0.0",
+  "version": "1.0.0",
   "keywords": [
     "mysql"
   ],
-  "repository":{
-    "type":"git",
-    "url":"git://github.com/vrondakis/katjs"
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/vrondakis/katjs"
   },
-  "dependencies":{
+  "dependencies": {
     "mysql": "2.8.0"
   }
 }
