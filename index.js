@@ -35,58 +35,58 @@ var connection;
 exports.mysqlInstance = mysql;
 exports.q = mysql.query;
 
-exports.connect = function(ip,username,password,database, callback) {
-	if(!(ip) && (username) && (password) && (database)) {
-		return false;
-	}
-	
-	connection = mysql.createConnection({
-		host:ip,
-		user:username,
-		password:password,
-		database:database,
-		charset : 'utf8mb4',
-	})
-	
-	exports.mysqlConnection = connection
-
-
-
-	connection.connect(function(error){
-		if(error){
-			console.error('DB:: Error connecting to IP '+ip+'. Error: '+error.stack);
-			return;
+exports.connect = function(ip,username,password,database, cb) {
+		if(
+			ip === undefined ||
+			username === undefined ||
+			password === undefined ||
+			database === undefined
+		) {
+			console.log(ip, username, password, database)
+			throw "Connection details not provided";
 		}
 
-		connection.on("error", function (err) {
-			if (!err.fatal) {
-				return;
-			}
+		connection = mysql.createConnection({
+			host:ip,
+			user:username,
+			password:password,
+			database:database,
+			charset : 'utf8mb4',
+		});
 
-			if (err.code !== "PROTOCOL_CONNECTION_LOST") {
-				throw err;
-			}
 
-			connection.connect(function(error){
-				if(error){
-					process.exit(1);
+		connection.connect(function(error){
+			if(error)
+				throw `Error connecting to IP ${ip}. ${error.stack}`;
+
+			connection.on("error", function (err) {
+				if (!err.fatal)
+					return;
+
+				if (err.code !== "PROTOCOL_CONNECTION_LOST")
+					throw err;
+
+
+				connection.connect(function(error){
+					if(error)
+						process.exit(1);
+				});
+			});
+
+			process.on('exit', function() {
+				if(connection){
+					connection.end();
 				}
 			});
 
-		});
 
-		process.on('exit', function() {
-			if(connection){
-				connection.end();
-			}
-		});
-
-		if(callback) callback();
+			if(cb) cb(connection);
+		
 	});
-	
 
+	return connection;
 
-}
+};
 
 var queryInternal = (str, array, callback, failure) => {
 
@@ -128,7 +128,7 @@ var queryInternal = (str, array, callback, failure) => {
 			}
 		}
 	});
-}
+};
 
 
 exports.query = function(str, array){
@@ -142,7 +142,7 @@ exports.query = function(str, array){
 		});
 	});
 
-}
+};
 
 exports.queryRow = function(str,array,callback,failure){
 	return new Promise((resolve, reject) => {
@@ -150,13 +150,13 @@ exports.queryRow = function(str,array,callback,failure){
 			return resolve(reset(data))
 		});
 	})
-}
+};
 
 exports.queryValue = function(str,array){
 	return new Promise((resolve, reject) => {
 		exports.queryRow(str, array).then((data) => {return resolve(reset(data))});
 	})
-}
+};
 
 exports.insert = function(table,array,callback, failure, insert){
 	insert = typeof insert !== 'undefined' ? insert : 'INSERT';
@@ -175,12 +175,11 @@ exports.insert = function(table,array,callback, failure, insert){
 			return resolve(data.insertId)
 		})
 	});
-
-}
+};
 
 exports.replace = function(table,array, callback){
 	return new Promise((resolve, reject)=>{
 		exports.insert(table,array,"REPLACE").then((data)=>
 			resolve(data));	
 	})
-}
+};
