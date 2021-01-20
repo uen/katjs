@@ -45,12 +45,15 @@ exports.connect = function(ip,username,password,database, cb) {
 			console.log(ip, username, password, database)
 			throw "Connection details not provided";
 		}
+	
+		const port = ip.split(":")[1];
 
 		connection = mysql.createConnection({
 			host:ip,
 			user:username,
 			password:password,
 			database:database,
+			...(port ? {port} : {}),
 			charset : 'utf8mb4',
 		});
 
