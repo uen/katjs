@@ -73,11 +73,7 @@ exports.connect = function(ip,username,password,database, cb) {
 				if (err.code !== "PROTOCOL_CONNECTION_LOST")
 					throw err;
 
-
-				connection.connect(function(error){
-					if(error)
-						process.exit(1);
-				});
+				connection.connect(function(error){});
 			});
 
 			process.on('exit', function() {
