@@ -16,11 +16,6 @@
 	.Insert('users', [{'name'=>'manolis','shoesize'=>11}, {'name'=>'James', 'shoesize'=>4}]); // Self explanatory.
 */
 
-/*
-	TODO
-	- remove callbacks for async await
-*/
-
 function reset(arr) {
 	if (!arr) return null;
 	return arr[Object.keys(arr)[0]] ? arr[Object.keys(arr)[0]] : null;
@@ -85,29 +80,18 @@ function reset(arr) {
 	  var val = array[param.slice(1)];
   
 	  if (val === null) {
-		str =
-		  str.substring(0, match.index) +
-		  "NULL" +
-		  str.substring(match.index + param.length, str.length);
+		str = str.substring(0, match.index) + "NULL" + str.substring(match.index + param.length, str.length);
 		continue;
 	  }
   
-	  str =
-		str.substring(0, match.index) +
-		"?" +
-		str.substring(match.index + param.length, str.length);
-	  // console.log("setting %j to %j", param, val)
+	  str = str.substring(0, match.index) + "?" + str.substring(match.index + param.length, str.length);
   
 	  if (typeof val !== "undefined") data.push(val);
 	  else {
 		console.error("KatJS: Could not bind param " + param + ":" + val);
 	  }
 	}    
-  
-	if (connection.state == "disconnected") {
-	  await connect();
-	}
-  
+
 	var query = connection.query(str, data, function (err, result) {
 	  if (err) {
 		console.error("MySQL Error. Query: " + query.sql + "\r\nError: " + err);
@@ -123,8 +107,6 @@ function reset(arr) {
   };
   
   exports.query = function (str, array) {
-	// console.log('[DEBUG KatJS::] New Query: ' + str)
-  
 	return new Promise((resolve, reject) => {
 	  queryInternal(
 		str,
@@ -165,15 +147,7 @@ function reset(arr) {
 	  keys.push(i);
 	}
   
-	var str =
-	  insert +
-	  " INTO " +
-	  table +
-	  " (" +
-	  keys.join(",") +
-	  ") VALUES (" +
-	  values.join(",") +
-	  ")";
+	var str = insert + " INTO " + table + " (" + keys.join(",") + ") VALUES (" + values.join(",") + ")";
   
 	return new Promise((resolve, reject) => {
 	  exports.query(str, array).then((data) => {
