@@ -65,6 +65,8 @@ exports.connect = function (ip, username, password, database, cb) {
 	  connection.end();
 	}
   });
+	
+  return connection;
 };
 
 const queryInternal = async (str, array, callback, failure) => {
